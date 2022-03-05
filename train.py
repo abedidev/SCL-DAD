@@ -313,7 +313,7 @@ if __name__ == '__main__':
         if args.resume_path == '':
             # ===============generate new model or pre-trained model===============
             model = generate_model(args)
-            optimizer = torch.optim.SGD(model.parameters(), lr=args.learning_rate, momentum=args.momentum,
+            optimizer = torch.optim.SGD(list(model.parameters()) + list(model_head.parameters()), lr=args.learning_rate, momentum=args.momentum,
                                         dampening=dampening, weight_decay=args.weight_decay, nesterov=args.nesterov)
             criterion = ContrastiveLoss()
             begin_epoch = 1
